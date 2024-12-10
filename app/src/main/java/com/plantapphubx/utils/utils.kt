@@ -4,7 +4,9 @@ import android.content.Context
 import android.os.SystemClock
 import android.view.View
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 
@@ -24,6 +26,15 @@ fun View.clickWithDebounceAndNavigate(action: NavDirections, fragment: Fragment)
         findNavController(fragment).navigate(action)
     }
 }
+
+fun onBackPressed(fragmentActivity: FragmentActivity) {
+    val callback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+        }
+    }
+    fragmentActivity.onBackPressedDispatcher.addCallback(fragmentActivity, callback)
+}
+
 fun toastMessage(context: Context, message: String) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
