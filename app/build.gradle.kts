@@ -100,4 +100,5 @@ dependencies {
     implementation("androidx.room:room-rxjava2:2.6.1")
     implementation("androidx.room:room-rxjava3:2.6.1")
 
+
 }
