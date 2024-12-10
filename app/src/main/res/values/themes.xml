@@ -1,9 +1,8 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.PlantAppHubx" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-    </style>
+<resources>
+    <style name="Base.Theme.PlantAppHubx" parent="Theme.Material3.DayNight.NoActionBar"/>
 
-    <style name="Theme.PlantAppHubx" parent="Base.Theme.PlantAppHubx" />
+    <style name="Theme.PlantAppHubx" parent="Base.Theme.PlantAppHubx">
+        <item name="android:statusBarColor">@android:color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
 </resources>

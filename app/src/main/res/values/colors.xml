@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="semi_transparent_dark_green">#B313231B</color>
+    <color name="semi_transparent_gray_green">#B3597165</color>
+    <color name="onboarding_button">#28AF6E</color>
+
 </resources>
