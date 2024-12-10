@@ -8,4 +8,5 @@
     <string name="by_tapping_text">By tapping next, you are agreeing to PlantID\n<u>Terms of Use</u> &amp; <u>Privacy Policy</u>.</string>
     <string name="take_a_photo_to_identify_the_plant">Take a photo to <b>identify</b>\nthe plant!</string>
     <string name="_continue">Continue</string>
+    <string name="get_plant_care_guides">Get plant <b>care guides</b></string>
 </resources>

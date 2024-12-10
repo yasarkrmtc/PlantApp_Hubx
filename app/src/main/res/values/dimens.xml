@@ -23,6 +23,8 @@
     <dimen name="size19">38dp</dimen>
     <dimen name="size20">40dp</dimen>
     <dimen name="minus_size_20">-40dp</dimen>
+    <dimen name="minus_size_8">-16dp</dimen>
+
     <dimen name="size21">42dp</dimen>
     <dimen name="size22">44dp</dimen>
     <dimen name="size23">46dp</dimen>

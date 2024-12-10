@@ -27,5 +27,14 @@
         android:id="@+id/secondOnboardingFragment"
         android:name="com.plantapphubx.ui.onboardings.SecondOnboardingFragment"
         android:label="fragment_second_onboarding"
-        tools:layout="@layout/fragment_second_onboarding" />
+        tools:layout="@layout/fragment_second_onboarding" >
+        <action
+            android:id="@+id/action_secondOnboardingFragment_to_paywallFragment"
+            app:destination="@id/paywallFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paywallFragment"
+        android:name="com.plantapphubx.ui.paywall.PaywallFragment"
+        android:label="fragment_paywall"
+        tools:layout="@layout/fragment_paywall" />
 </navigation>

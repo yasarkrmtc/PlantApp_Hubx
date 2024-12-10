@@ -73,12 +73,12 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="@dimen/size0"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:lineHeight="@dimen/size7"
         android:text="@string/by_tapping_text"
-        android:layout_marginBottom="@dimen/size10"
+        android:layout_marginBottom="@dimen/size14"
         android:textColor="@color/semi_transparent_gray_green"
         android:textSize="@dimen/font_size_11"
         app:layout_constraintBottom_toBottomOf="parent"
