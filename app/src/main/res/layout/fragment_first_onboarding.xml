@@ -4,80 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/first_onboarding_background_image"
     tools:context=".ui.onboardings.FirstOnboardingFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size8"
-        android:layout_marginTop="@dimen/size23"
-        android:fontFamily="@font/roboto"
-        android:text="@string/take_a_photo_to_identify_the_plant"
-        android:textColor="@color/black"
-        android:textSize="@dimen/font_size_28"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size10"
-        android:src="@drawable/brus_image"
-        android:layout_marginEnd="@dimen/minus_size_20"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/size0"
-        android:src="@drawable/first_onboarding_image"
-        app:layout_constraintBottom_toTopOf="@+id/continueButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/continueButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size16"
-        android:layout_marginEnd="@dimen/size16"
-        android:layout_marginBottom="@dimen/size7"
-        app:cardBackgroundColor="@color/onboarding_button"
-        app:cardCornerRadius="@dimen/size6"
-        app:cardElevation="@dimen/size1"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingVertical="@dimen/size9"
-            android:text="@string/_continue"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/font_size_16"
-            android:textStyle="bold" />
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <ImageView
-        android:id="@+id/textView4"
-        android:layout_width="@dimen/size0"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/size14"
-        android:src="@drawable/slider1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/continueButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/continueButton" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
