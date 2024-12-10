@@ -19,7 +19,6 @@ class FirstOnboardingFragment :
             continueButton.clickWithDebounce {
                 findNavController().navigate(R.id.action_firstOnboardingFragment_to_secondOnboardingFragment)
             }
-
         }
     }
     override fun onResume() {

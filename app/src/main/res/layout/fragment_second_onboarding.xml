@@ -7,10 +7,9 @@
     android:background="@drawable/first_onboarding_background_image"
     tools:context=".ui.onboardings.SecondOnboardingFragment">
 
-
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
+        android:id="@+id/titleText"
+        android:layout_width="@dimen/size0"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size8"
         android:layout_marginTop="@dimen/size23"
@@ -26,11 +25,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/minus_size_8"
         android:src="@drawable/brus_image"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintEnd_toEndOf="@+id/titleText"
+        app:layout_constraintTop_toBottomOf="@+id/titleText" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/pageImage"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size0"
         android:src="@drawable/second_onboarding_image"
@@ -51,7 +50,7 @@
         app:cardBackgroundColor="@color/onboarding_button"
         app:cardCornerRadius="@dimen/size6"
         app:cardElevation="@dimen/size1"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintBottom_toTopOf="@+id/slider2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
@@ -69,7 +68,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <ImageView
-        android:id="@+id/textView4"
+        android:id="@+id/slider2"
         android:layout_width="@dimen/size0"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/size14"
