@@ -14,6 +14,7 @@
         android:layout_marginStart="@dimen/size8"
         android:layout_marginTop="@dimen/size23"
         android:fontFamily="@font/roboto"
+        android:textColor="@color/black"
         android:text="@string/welcome_to_plantapp"
         android:textSize="@dimen/font_size_28"
         app:layout_constraintStart_toStartOf="parent"

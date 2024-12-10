@@ -7,6 +7,7 @@ import com.plantapphubx.R
 import com.plantapphubx.base.BaseFragment
 import com.plantapphubx.databinding.FragmentFirstOnboardingBinding
 import com.plantapphubx.ui.MainActivity
+import com.plantapphubx.utils.clickWithDebounce
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -15,7 +16,9 @@ class FirstOnboardingFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-           // findNavController().navigate(R.id.action_firstOnboardingFragment_to_secondOnboardingFragment)
+            continueButton.clickWithDebounce {
+                findNavController().navigate(R.id.action_firstOnboardingFragment_to_secondOnboardingFragment)
+            }
 
         }
     }

@@ -6,4 +6,6 @@
     <string name="welcome_to_plantapp">Welcome to <b>PlantApp</b></string>
     <string name="identify_more_than_3000_plants_and_88_accuracy">Identify more than 3000+ plants and 88% accuracy.</string>
     <string name="by_tapping_text">By tapping next, you are agreeing to PlantID\n<u>Terms of Use</u> &amp; <u>Privacy Policy</u>.</string>
+    <string name="take_a_photo_to_identify_the_plant">Take a photo to <b>identify</b>\nthe plant!</string>
+    <string name="_continue">Continue</string>
 </resources>
