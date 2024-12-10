@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Plant App Hubx</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="get_started">Get Started</string>
+    <string name="welcome_to_plantapp">Welcome to <b>PlantApp</b></string>
+    <string name="identify_more_than_3000_plants_and_88_accuracy">Identify more than 3000+ plants and 88% accuracy.</string>
+    <string name="by_tapping_text">By tapping next, you are agreeing to PlantID\n<u>Terms of Use</u> &amp; <u>Privacy Policy</u>.</string>
 </resources>
