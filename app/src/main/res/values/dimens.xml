@@ -50,7 +50,7 @@
     <dimen name="size55">110dp</dimen>
     <dimen name="size60">120dp</dimen>
 
-
+    <dimen name="font_size_9">9sp</dimen>
     <dimen name="font_size_10">10sp</dimen>
     <dimen name="font_size_11">11sp</dimen>
     <dimen name="font_size_12">12sp</dimen>
