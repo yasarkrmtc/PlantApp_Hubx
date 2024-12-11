@@ -1,0 +1,55 @@
+package com.plantapphubx.ui.home
+
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.plantapphubx.R
+import com.plantapphubx.data.remote.Questions
+import com.plantapphubx.databinding.QuestionsItemBinding
+
+class HomeQuestionsAdapter(
+    private var questions: List<Questions>,
+    private val onItemClick: (Questions) -> Unit
+) : RecyclerView.Adapter<HomeQuestionsAdapter.QuestionViewHolder>() {
+
+    inner class QuestionViewHolder(private val binding: QuestionsItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(question: Questions) {
+            binding.apply {
+               // Log.d("HomeQuestionsAdapter", "Loading image: ${question.title}")
+                questionText.text = question.title
+
+                Glide.with(imageView.context)
+                    .load(question.imageUri)
+                    .placeholder(R.drawable.ic_launcher_background)
+                    .error(com.google.android.material.R.drawable.mtrl_ic_error)
+                    .into(imageView)
+
+                root.setOnClickListener {
+                    onItemClick(question)
+                }
+            }
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestionViewHolder {
+        val binding = QuestionsItemBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        )
+        return QuestionViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) {
+        holder.bind(questions[position])
+    }
+
+    override fun getItemCount() = questions.size
+
+    fun updateData(newQuestions: List<Questions>) {
+        questions = newQuestions
+        notifyDataSetChanged()
+    }
+}
