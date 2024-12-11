@@ -1,0 +1,5 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+    <size android:width="20dp" android:height="20dp" />
+    <stroke android:width="2dp" android:color="@color/unselected_radio_color" />
+    <solid android:color="@android:color/transparent" />
+</shape>

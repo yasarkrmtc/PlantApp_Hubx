@@ -1,14 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/paywall_background_color"
     tools:context=".ui.paywall.PaywallFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/premiumImage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/paywall_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/closeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size14"
+        android:layout_marginEnd="@dimen/size10"
+        android:src="@drawable/paywall_button_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size8"
+        android:layout_marginBottom="@dimen/size1"
+        android:fontFamily="@font/roboto"
+        android:text="@string/plantapp_premium"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_size_28"
+        app:layout_constraintBottom_toTopOf="@+id/subTitleText"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/subTitleText"
+        android:layout_width="@dimen/size0"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size14"
+        android:fontFamily="@font/roboto"
+        android:text="@string/access_all_features"
+        android:textColor="@color/lightWhite"
+        android:textSize="@dimen/font_size_18"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/titleText" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/minus_size_8"
+        android:scaleType="fitXY"
+        android:src="@drawable/paywall_images_features"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/subTitleText"
+        app:layout_constraintTop_toBottomOf="@+id/premiumImage" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size8"
+        android:layout_marginEnd="@dimen/size8"
+        app:layout_constraintBottom_toTopOf="@+id/tryButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3">
+
+        <RadioButton
+            android:id="@+id/radioOneMonth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/subscription_option_background"
+            android:button="@drawable/custom_radio_button"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:text="1 Month\n$2.99/month, auto renewable"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioButton
+            android:id="@+id/radioOneYear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/subscription_option_background"
+            android:button="@drawable/custom_radio_button"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:text="1 Year\nFirst 3 days free, then $529.99/year"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioOneMonth" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/tryButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size16"
+        android:layout_marginEnd="@dimen/size16"
+        android:layout_marginBottom="@dimen/size7"
+        app:cardBackgroundColor="@color/onboarding_button"
+        app:cardCornerRadius="@dimen/size6"
+        app:cardElevation="@dimen/size1"
+        app:layout_constraintBottom_toTopOf="@+id/afterTheText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingVertical="@dimen/size9"
+            android:text="@string/try_free_for_3_days"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/font_size_16"
+            android:textStyle="bold" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/afterTheText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size3"
+        android:gravity="center"
+        android:lineHeight="@dimen/size5"
+        android:text="@string/after_the_3_day_free_trial_period_you_ll_be_charged_274_99_per_year_unless_you_cancel_before_the_trial_expires_yearly_subscription_is_auto_renewable"
+        android:textColor="@color/semi_transparent_gray_green"
+        android:textSize="@dimen/font_size_9"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="@+id/tryButton"
+        app:layout_constraintStart_toStartOf="@+id/tryButton" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size10"
+        android:gravity="center"
+        android:text="@string/terms_privacy_restore"
+        android:textColor="@color/semi_transparent_gray_green"
+        android:textSize="@dimen/font_size_11"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/afterTheText"
+        app:layout_constraintStart_toStartOf="@+id/afterTheText" />
+</androidx.constraintlayout.widget.ConstraintLayout>
