@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/premiumImage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="465dp"
         android:scaleType="fitXY"
         android:src="@drawable/paywall_image"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,64 +49,148 @@
         android:text="@string/access_all_features"
         android:textColor="@color/lightWhite"
         android:textSize="@dimen/font_size_18"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintBottom_toTopOf="@+id/unlimited_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/titleText" />
 
+
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="0dp"
+        android:id="@+id/unlimited_image"
+        android:layout_width="@dimen/size0"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/minus_size_8"
+        android:layout_marginEnd="@dimen/size8"
         android:scaleType="fitXY"
         android:src="@drawable/paywall_images_features"
+        app:layout_constraintBottom_toBottomOf="@+id/premiumImage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/subTitleText"
-        app:layout_constraintTop_toBottomOf="@+id/premiumImage" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/subTitleText" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/monthlyCardView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/size32"
         android:layout_marginStart="@dimen/size8"
         android:layout_marginEnd="@dimen/size8"
-        app:layout_constraintBottom_toTopOf="@+id/tryButton"
+        app:cardBackgroundColor="#12FFFFFF"
+        app:cardCornerRadius="@dimen/size8"
+        app:strokeColor="@color/white"
+        app:cardElevation="@dimen/size0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/unlimited_image"
+        app:strokeWidth="1.5dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/unselect_radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size8"
+                android:layout_marginTop="@dimen/size10"
+                android:layout_marginBottom="@dimen/size10"
+                android:src="@drawable/unselected_radio_btn"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/monthly_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size8"
+                android:fontFamily="@font/roboto"
+                android:text="@string/_1_month"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_16"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/unselect_radio"
+                app:layout_constraintTop_toTopOf="@+id/unselect_radio" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="@string/_2_99_month_auto_renewable"
+                android:textColor="@color/lightWhite"
+                android:textSize="@dimen/font_size_12"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/monthly_text"
+                app:layout_constraintTop_toBottomOf="@+id/monthly_text" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/yearlyCardView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:cardBackgroundColor="#12FFFFFF"
+        app:cardCornerRadius="@dimen/size8"
+        app:cardElevation="@dimen/size0"
+        android:layout_marginEnd="@dimen/size8"
+        android:layout_marginTop="@dimen/size8"
+        android:layout_marginStart="@dimen/size8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3">
+        app:layout_constraintTop_toBottomOf="@+id/monthlyCardView"
+        app:strokeColor="@color/selected_border"
+        app:strokeWidth="1.5dp">
 
-        <RadioButton
-            android:id="@+id/radioOneMonth"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/subscription_option_background"
-            android:button="@drawable/custom_radio_button"
-            android:gravity="center_vertical"
-            android:padding="16dp"
-            android:text="1 Month\n$2.99/month, auto renewable"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <RadioButton
-            android:id="@+id/radioOneYear"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/subscription_option_background"
-            android:button="@drawable/custom_radio_button"
-            android:gravity="center_vertical"
-            android:padding="16dp"
-            android:text="1 Year\nFirst 3 days free, then $529.99/year"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioOneMonth" />
+            <ImageView
+                android:id="@+id/select_radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size8"
+                android:layout_marginTop="@dimen/size10"
+                android:layout_marginBottom="@dimen/size10"
+                android:src="@drawable/selected_radio_btn"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/monthText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size8"
+                android:fontFamily="@font/roboto"
+                android:text="@string/_1_year"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_16"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/select_radio"
+                app:layout_constraintTop_toTopOf="@+id/select_radio" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="@string/first_3_days_free_then_529_99_year"
+                android:textColor="@color/lightWhite"
+                android:textSize="@dimen/font_size_12"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/monthText"
+                app:layout_constraintTop_toBottomOf="@+id/monthText" />
+
+            <ImageView
+                android:id="@+id/yearlyPriceBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/badge_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/tryButton"
@@ -118,6 +202,7 @@
         app:cardBackgroundColor="@color/onboarding_button"
         app:cardCornerRadius="@dimen/size6"
         app:cardElevation="@dimen/size1"
+        app:strokeColor="@color/onboarding_button"
         app:layout_constraintBottom_toTopOf="@+id/afterTheText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
