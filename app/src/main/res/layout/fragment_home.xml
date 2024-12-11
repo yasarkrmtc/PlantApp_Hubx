@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size14"
-        android:layout_marginTop="@dimen/size14"
+        android:layout_marginTop="@dimen/size20"
         android:fontFamily="@font/roboto"
         android:text="@string/hi_plant_lover"
         android:textColor="@color/hi_plant_lover_color"
@@ -120,19 +120,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginBottom="@dimen/size30"
-        app:layout_constraintBottom_toTopOf="@+id/categoriesRecyclerView"
+        android:layout_marginTop="@dimen/size8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoriesRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/size8"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-    
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/questionRecyclerview" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

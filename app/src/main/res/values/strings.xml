@@ -18,4 +18,8 @@
     <string name="good_afternoon"><b>Good Afternoon!</b> ⛅</string>
     <string name="tap_to_upgrade_your_account">Tap to upgrade your account!</string>
     <string name="free_premium_available">FREE Premium Available</string>
+    <string name="first_3_days_free_then_529_99_year">First 3 days free, then $529,99/year</string>
+    <string name="_1_year">1 Year</string>
+    <string name="_1_month">1 Month</string>
+    <string name="_2_99_month_auto_renewable">$2.99/month, auto renewable</string>
 </resources>
