@@ -2,6 +2,7 @@ package com.plantapphubx.di
 
 import com.plantapphubx.data.remote.ServiceInterface
 import com.plantapphubx.data.repository.ServiceRepositoryImpl
+import com.plantapphubx.domain.usecase.FetchCategoriesUseCase
 import com.plantapphubx.domain.usecase.FetchQuestionsUseCase
 import com.plantapphubx.utils.Constants
 import dagger.Module
@@ -42,5 +43,10 @@ object RetrofitInstance {
     @Provides
     fun provideFetchQuestionsUseCase(repository: ServiceRepositoryImpl): FetchQuestionsUseCase {
         return FetchQuestionsUseCase(repository)
+    }
+
+    @Provides
+    fun provideFetchCategoriesUseCase(repository: ServiceRepositoryImpl): FetchCategoriesUseCase {
+        return FetchCategoriesUseCase(repository)
     }
 }
