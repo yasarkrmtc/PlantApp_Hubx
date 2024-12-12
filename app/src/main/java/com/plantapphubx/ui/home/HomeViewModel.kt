@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.plantapphubx.data.local.CategoryDataUIModel
+import com.plantapphubx.data.local.QuestionsUIModel
 import com.plantapphubx.data.remote.CategoryData
 import com.plantapphubx.data.remote.Questions
 import com.plantapphubx.domain.usecase.FetchCategoriesUseCase
@@ -19,11 +21,11 @@ class HomeViewModel @Inject constructor(
     private val fetchCategoriesUseCase: FetchCategoriesUseCase
 ) : ViewModel() {
 
-    private val _questions = MutableLiveData<List<Questions>>()
-    val questions: LiveData<List<Questions>> get() = _questions
+    private val _questions = MutableLiveData<List<QuestionsUIModel>>()
+    val questions: LiveData<List<QuestionsUIModel>> get() = _questions
 
-    private val _categories = MutableLiveData<List<CategoryData>>()
-    val categories: LiveData<List<CategoryData>> get() = _categories
+    private val _categories = MutableLiveData<List<CategoryDataUIModel>>()
+    val categories: LiveData<List<CategoryDataUIModel>> get() = _categories
 
     fun fetchQuestions() {
         viewModelScope.launch {

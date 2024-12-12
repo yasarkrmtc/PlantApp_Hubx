@@ -8,19 +8,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.plantapphubx.R
+import com.plantapphubx.data.local.QuestionsUIModel
 import com.plantapphubx.data.remote.Questions
 import com.plantapphubx.databinding.QuestionsItemBinding
 import com.plantapphubx.utils.clickWithDebounce
 
 class HomeQuestionsAdapter(
-    private var questions: List<Questions>,
-    private val onItemClick: (Questions) -> Unit
+    private var questions: List<QuestionsUIModel>,
+    private val onItemClick: (QuestionsUIModel) -> Unit
 ) : RecyclerView.Adapter<HomeQuestionsAdapter.QuestionViewHolder>() {
 
     inner class QuestionViewHolder(private val binding: QuestionsItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(question: Questions) {
+        fun bind(question: QuestionsUIModel) {
             binding.apply {
                 questionText.text = question.title
 
@@ -52,7 +53,7 @@ class HomeQuestionsAdapter(
 
     override fun getItemCount() = questions.size
 
-    fun updateData(newQuestions: List<Questions>) {
+    fun updateData(newQuestions: List<QuestionsUIModel>) {
         questions = newQuestions
         notifyDataSetChanged()
     }

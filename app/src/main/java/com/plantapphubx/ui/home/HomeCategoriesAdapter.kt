@@ -5,17 +5,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.plantapphubx.data.remote.CategoryData
+import com.plantapphubx.data.local.CategoryDataUIModel
 import com.plantapphubx.databinding.CategoriesItemBinding
 
 class HomeCategoriesAdapter(
-    private var categories: List<CategoryData>,
-    private val onItemClick: (CategoryData) -> Unit
+    private var categories: List<CategoryDataUIModel>,
+    private val onItemClick: (CategoryDataUIModel) -> Unit
 ) : RecyclerView.Adapter<HomeCategoriesAdapter.CategoryViewHolder>() {
 
     inner class CategoryViewHolder(private val binding: CategoriesItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(category: CategoryData) {
+        fun bind(category: CategoryDataUIModel) {
             binding.categoriesText.text = category.title
             Glide.with(binding.categoriesImageView.context)
                 .load(category.image.url)
@@ -42,7 +42,7 @@ class HomeCategoriesAdapter(
 
     override fun getItemCount() = categories.size
 
-    fun updateData(newCategories: List<CategoryData>) {
+    fun updateData(newCategories: List<CategoryDataUIModel>) {
         categories = newCategories
         notifyDataSetChanged()
     }
