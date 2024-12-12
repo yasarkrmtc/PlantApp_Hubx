@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.plantapphubx.base.BaseFragment
 import com.plantapphubx.databinding.FragmentHomeBinding
+import com.plantapphubx.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -55,5 +56,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private fun filterCategories(query: String) {
         val filteredCategories = viewModel.filterCategories(query)
         categoriesAdapter.updateData(filteredCategories)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as? MainActivity)?.changeFullScreenFlags(true)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        (activity as? MainActivity)?.changeFullScreenFlags(false)
     }
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:iconTint="#BDBDBD"
+        android:icon="@drawable/bottom_navigation_home_icon"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/diagnoseFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:iconTint="#BDBDBD"
+        android:icon="@drawable/bottom_navigation_diagnose_icon"
+        android:title="@string/diagnose" />
+    <item
+        android:id="@+id/myGardenFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:iconTint="#BDBDBD"
+        android:icon="@drawable/bottom_navigation_mygarden_icon"
+        android:title="@string/my_garden" />
+    <item
+        android:id="@+id/profileFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:iconTint="#BDBDBD"
+        android:icon="@drawable/bottom_navigation_profile_icon"
+        android:title="@string/profile" />
+</menu>

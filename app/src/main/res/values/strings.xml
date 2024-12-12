@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Plant App Hubx</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="get_started">Get Started</string>
     <string name="welcome_to_plantapp">Welcome to <b>PlantApp</b></string>
@@ -24,4 +23,11 @@
     <string name="_2_99_month_auto_renewable">$2.99/month, auto renewable</string>
     <string name="how_to_identify_plants_easily_with_plantapp">How to identify plants easily with PlantApp?</string>
     <string name="edible_plants">Edible Plants</string>
+    <string name="my_garden">My Garden</string>
+    <string name="diagnose">Diagnose</string>
+    <string name="home">Home</string>
+    <string name="profile_coming_soon">Profile Coming Soon!</string>
+    <string name="diagnose_coming_soon">Diagnose Coming Soon!</string>
+    <string name="my_garden_coming_soon">My Garden Coming Soon!</string>
+    <string name="profile">Profile</string>
 </resources>
