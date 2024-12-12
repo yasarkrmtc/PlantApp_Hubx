@@ -1,11 +1,11 @@
 package com.plantapphubx.data.repository
 
-import com.plantapphubx.data.remote.Questions
 import com.plantapphubx.data.remote.ServiceInterface
 
-class ServiceRepositoryImpl(private val apiService: ServiceInterface) {
+class  ServiceRepositoryImpl(private val api: ServiceInterface) {
 
-    suspend fun getQuestions(): List<Questions> {
-        return apiService.getQuestions()
-    }
+    //adfsdsfsdfsdf
+    suspend fun getQuestions() = api.getQuestions()
+
+    suspend fun getCategories() = api.getCategories().data // Extract `data` here
 }

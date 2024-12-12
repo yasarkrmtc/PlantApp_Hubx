@@ -1,5 +1,7 @@
 package com.plantapphubx.ui.home
 
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.plantapphubx.R
 import com.plantapphubx.data.remote.Questions
 import com.plantapphubx.databinding.QuestionsItemBinding
+import com.plantapphubx.utils.clickWithDebounce
 
 class HomeQuestionsAdapter(
     private var questions: List<Questions>,
@@ -19,7 +22,6 @@ class HomeQuestionsAdapter(
 
         fun bind(question: Questions) {
             binding.apply {
-               // Log.d("HomeQuestionsAdapter", "Loading image: ${question.title}")
                 questionText.text = question.title
 
                 Glide.with(imageView.context)
@@ -28,8 +30,10 @@ class HomeQuestionsAdapter(
                     .error(com.google.android.material.R.drawable.mtrl_ic_error)
                     .into(imageView)
 
-                root.setOnClickListener {
-                    onItemClick(question)
+                root.clickWithDebounce {
+                    val context = root.context
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(question.uri))
+                    context.startActivity(intent)
                 }
             }
         }

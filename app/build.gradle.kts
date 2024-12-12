@@ -100,5 +100,6 @@ dependencies {
     implementation("androidx.room:room-rxjava2:2.6.1")
     implementation("androidx.room:room-rxjava3:2.6.1")
 
+    implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 
 }
