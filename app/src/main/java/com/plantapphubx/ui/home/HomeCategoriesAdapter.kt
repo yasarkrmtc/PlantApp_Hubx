@@ -35,10 +35,8 @@ class HomeCategoriesAdapter(
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        Log.d("CategoriesAdapter", "Binding Category: ${categories[position]}")
         holder.bind(categories[position])
     }
-
 
     override fun getItemCount() = categories.size
 

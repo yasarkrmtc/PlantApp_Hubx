@@ -7,8 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.plantapphubx.data.local.CategoryDataUIModel
 import com.plantapphubx.data.local.QuestionsUIModel
-import com.plantapphubx.data.remote.CategoryData
-import com.plantapphubx.data.remote.Questions
 import com.plantapphubx.domain.usecase.FetchCategoriesUseCase
 import com.plantapphubx.domain.usecase.FetchQuestionsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,8 +28,11 @@ class HomeViewModel @Inject constructor(
     fun fetchQuestions() {
         viewModelScope.launch {
             try {
-                _questions.postValue(fetchQuestionsUseCase.execute())
-            } catch (e: Exception) { }
+                val result = fetchQuestionsUseCase.execute()
+                _questions.postValue(result)
+            } catch (e: Exception) {
+                Log.e("HomeViewModel", "Error fetching questions", e)
+            }
         }
     }
 
@@ -46,5 +47,10 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
-}
 
+    fun filterCategories(query: String): List<CategoryDataUIModel> {
+        return _categories.value?.filter { category ->
+            category.title.contains(query, ignoreCase = true)
+        } ?: emptyList()
+    }
+}

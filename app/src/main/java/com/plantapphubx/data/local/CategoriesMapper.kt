@@ -20,7 +20,7 @@ class CategoriesMapper {
             publishedAt = this.publishedAt,
             title = this.title,
             rank = this.rank,
-            image = this.image.toUIModel()  // Map Image to ImageUIModel
+            image = this.image.toUIModel()
         )
     }
 
