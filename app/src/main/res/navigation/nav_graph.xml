@@ -45,6 +45,10 @@
         android:id="@+id/homeFragment"
         android:name="com.plantapphubx.ui.home.HomeFragment"
         android:label="HomeFragment" >
+        <argument
+            android:name="isPremium"
+            app:argType="boolean"
+            android:defaultValue="false" />
         <action
             android:id="@+id/action_homeFragment_to_profileFragment2"
             app:destination="@id/profileFragment" />
