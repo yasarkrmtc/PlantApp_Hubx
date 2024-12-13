@@ -46,11 +46,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size16"
         android:layout_marginEnd="@dimen/size16"
-        android:layout_marginBottom="@dimen/size7"
+        android:layout_marginBottom="@dimen/size4"
         app:cardBackgroundColor="@color/onboarding_button"
         app:cardCornerRadius="@dimen/size6"
         app:cardElevation="@dimen/size1"
-        app:layout_constraintBottom_toTopOf="@+id/slider2"
+        app:layout_constraintBottom_toTopOf="@+id/cl_slider2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
@@ -67,17 +67,27 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <ImageView
-        android:id="@+id/slider2"
-        android:layout_width="@dimen/size0"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/size14"
-        android:src="@drawable/slider2"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_slider2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size18"
+        android:layout_marginBottom="@dimen/size8"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/continueButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/continueButton" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+        <ImageView
+            android:id="@+id/slider2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/slider2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+</androidx.constraintlayout.widget.ConstraintLayout>
