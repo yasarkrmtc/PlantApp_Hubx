@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.plantapphubx.base.BaseFragment
@@ -16,6 +17,7 @@ import com.plantapphubx.ui.paywall.PaywallActivity
 import com.plantapphubx.utils.CustomAdaptiveDecoration
 import com.plantapphubx.utils.clickWithDebounce
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
@@ -37,33 +39,33 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         }
 
-        // Initialize Adapters
-        questionsAdapter = HomeQuestionsAdapter(emptyList()) { question ->
-            // Handle question click
-        }
-        categoriesAdapter = HomeCategoriesAdapter(emptyList()) { category ->
-            // Handle category click
-        }
-
-        // Setup RecyclerViews
-        setupQuestionsRecyclerView()
-        setupCategoriesRecyclerView()
-
-        // Observe ViewModel LiveData
-        viewModel.questions.observe(viewLifecycleOwner) { questions ->
-            questionsAdapter.updateData(questions)
-        }
-
-        viewModel.categories.observe(viewLifecycleOwner) { categories ->
-            categoriesAdapter.updateData(categories)
-        }
-
-        // Search bar filtering
         binding.homeSearchbar.addTextChangedListener { editable ->
             val query = editable.toString()
             filterCategories(query)
         }
+
+        questionsAdapter = HomeQuestionsAdapter(emptyList()) { question ->
+        }
+        categoriesAdapter = HomeCategoriesAdapter(emptyList()) { category ->
+        }
+
+        setupQuestionsRecyclerView()
+        setupCategoriesRecyclerView()
+
+        lifecycleScope.launchWhenStarted {
+            launch {
+                viewModel.questions.collect { questions ->
+                    questionsAdapter.updateData(questions)
+                }
+            }
+            launch {
+                viewModel.categories.collect { categories ->
+                    categoriesAdapter.updateData(categories)
+                }
+            }
+        }
     }
+
 
     private fun setupQuestionsRecyclerView() {
         binding.questionRecyclerview.layoutManager = LinearLayoutManager(
@@ -73,7 +75,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         )
         binding.questionRecyclerview.adapter = questionsAdapter
 
-        val spacing = 12 // dp
+        val spacing = 12
         val itemDecoration = CustomAdaptiveDecoration(
             context = requireContext(),
             spanCount = 1,
@@ -88,7 +90,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         binding.categoriesRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.categoriesRecyclerView.adapter = categoriesAdapter
 
-        val spacing = 24
+        val spacing = 28
         val itemDecoration = CustomAdaptiveDecoration(
             context = requireContext(),
             spanCount = 2,
@@ -116,7 +118,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private fun checkPremiumStatus() {
         val sharedPreferences = requireContext().getSharedPreferences("PaywallPrefs", Context.MODE_PRIVATE)
-        val isPremium = sharedPreferences.getBoolean("isPremium", false) // default to false if not found
+        val isPremium = sharedPreferences.getBoolean("isPremium", false)
 
         if (isPremium) {
             binding.llPremium.visibility = View.GONE

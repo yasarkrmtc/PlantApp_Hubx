@@ -6,28 +6,22 @@ import com.plantapphubx.data.mapper.QuestionsMapper
 import com.plantapphubx.data.local.QuestionsUIModel
 import com.plantapphubx.data.remote.ServiceInterface
 import com.plantapphubx.domain.repository.ServiceRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flow
 
-class  ServiceRepositoryImpl(private val api: ServiceInterface) :ServiceRepository {
+class ServiceRepositoryImpl(private val api: ServiceInterface) : ServiceRepository {
 
     private val questionsMapper = QuestionsMapper()
     private val categoriesMapper = CategoriesMapper()
 
-    override suspend fun getQuestions(): List<QuestionsUIModel> {
-        return try {
-            val questions = api.getQuestions()
-            questionsMapper.mapToUIModel(questions)
-        } catch (e: Exception) {
-            emptyList()
-        }
-    }
+    override fun getQuestions(): Flow<List<QuestionsUIModel>> = flow {
+        val questions = api.getQuestions()
+        emit(questionsMapper.mapToUIModel(questions))
+    }.catch { emit(emptyList()) }
 
-
-    override suspend fun getCategories(): List<CategoryDataUIModel> {
-        return try {
-            val categories = api.getCategories()
-            categoriesMapper.mapToUIModel(categories)
-        } catch (e: Exception) {
-            emptyList()
-        }
-    }
+    override fun getCategories(): Flow<List<CategoryDataUIModel>> = flow {
+        val categories = api.getCategories()
+        emit(categoriesMapper.mapToUIModel(categories))
+    }.catch { emit(emptyList()) }
 }

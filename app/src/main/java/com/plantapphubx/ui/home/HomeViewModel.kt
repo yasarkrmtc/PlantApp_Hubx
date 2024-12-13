@@ -1,8 +1,5 @@
 package com.plantapphubx.ui.home
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.plantapphubx.data.local.CategoryDataUIModel
@@ -10,6 +7,9 @@ import com.plantapphubx.data.local.QuestionsUIModel
 import com.plantapphubx.domain.usecase.FetchCategoriesUseCase
 import com.plantapphubx.domain.usecase.FetchQuestionsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,38 +19,31 @@ class HomeViewModel @Inject constructor(
     private val fetchCategoriesUseCase: FetchCategoriesUseCase
 ) : ViewModel() {
 
-    private val _questions = MutableLiveData<List<QuestionsUIModel>>()
-    val questions: LiveData<List<QuestionsUIModel>> get() = _questions
+    private val _questions = MutableStateFlow<List<QuestionsUIModel>>(emptyList())
+    val questions: StateFlow<List<QuestionsUIModel>> get() = _questions
 
-    private val _categories = MutableLiveData<List<CategoryDataUIModel>>()
-    val categories: LiveData<List<CategoryDataUIModel>> get() = _categories
+    private val _categories = MutableStateFlow<List<CategoryDataUIModel>>(emptyList())
+    val categories: StateFlow<List<CategoryDataUIModel>> get() = _categories
 
     fun fetchQuestions() {
         viewModelScope.launch {
-            try {
-                val result = fetchQuestionsUseCase.execute()
-                _questions.postValue(result)
-            } catch (e: Exception) {
-                Log.e("HomeViewModel", "Error fetching questions", e)
+            fetchQuestionsUseCase.execute().collect { result ->
+                _questions.value = result
             }
         }
     }
 
     fun fetchCategories() {
         viewModelScope.launch {
-            try {
-                val result = fetchCategoriesUseCase.execute()
-                Log.d("HomeViewModel", "Fetched Categories: $result")
-                _categories.postValue(result)
-            } catch (e: Exception) {
-                Log.e("HomeViewModel", "Error fetching categories", e)
+            fetchCategoriesUseCase.execute().collect { result ->
+                _categories.value = result
             }
         }
     }
 
     fun filterCategories(query: String): List<CategoryDataUIModel> {
-        return _categories.value?.filter { category ->
+        return _categories.value.filter { category ->
             category.title.contains(query, ignoreCase = true)
-        } ?: emptyList()
+        }
     }
 }

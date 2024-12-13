@@ -7,13 +7,12 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:strokeColor="#E4E0E0"
+        app:strokeColor="#F4F6F6"
         app:cardElevation="0dp"
         android:elevation="0dp"
         app:cardCornerRadius="@dimen/size8">
 
-        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="152dp"
             android:layout_height="152dp"
             android:background="@color/white"
@@ -36,7 +35,7 @@
                 android:layout_height="@dimen/size0"
                 android:layout_marginStart="@dimen/size6"
                 android:layout_marginTop="@dimen/size6"
-                android:layout_marginEnd="@dimen/size30"
+                android:layout_marginEnd="@dimen/size25"
                 android:fontFamily="@font/roboto"
                 android:text="@string/edible_plants"
                 android:textColor="@color/black"
@@ -44,8 +43,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
