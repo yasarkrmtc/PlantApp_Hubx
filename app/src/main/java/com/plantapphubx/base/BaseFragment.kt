@@ -9,7 +9,6 @@ import androidx.viewbinding.ViewBinding
 
 typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
-
 open class BaseFragment<VB : ViewBinding?>(
     private val inflate: Inflate<VB>,
 ) : Fragment() {

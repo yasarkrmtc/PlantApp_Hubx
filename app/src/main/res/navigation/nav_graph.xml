@@ -3,44 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/getStartedFragment">
+    app:startDestination="@id/homeFragment">
 
-    <fragment
-        android:id="@+id/getStartedFragment"
-        android:name="com.plantapphubx.ui.onboardings.GetStartedFragment"
-        android:label="fragment_get_started"
-        tools:layout="@layout/fragment_get_started" >
-        <action
-            android:id="@+id/action_getStartedFragment_to_firstOnboardingFragment"
-            app:destination="@id/firstOnboardingFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/firstOnboardingFragment"
-        android:name="com.plantapphubx.ui.onboardings.FirstOnboardingFragment"
-        android:label="fragment_first_onboarding"
-        tools:layout="@layout/fragment_first_onboarding" >
-        <action
-            android:id="@+id/action_firstOnboardingFragment_to_secondOnboardingFragment"
-            app:destination="@id/secondOnboardingFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/secondOnboardingFragment"
-        android:name="com.plantapphubx.ui.onboardings.SecondOnboardingFragment"
-        android:label="fragment_second_onboarding"
-        tools:layout="@layout/fragment_second_onboarding" >
-        <action
-            android:id="@+id/action_secondOnboardingFragment_to_paywallFragment"
-            app:destination="@id/paywallFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/paywallFragment"
-        android:name="com.plantapphubx.ui.paywall.PaywallFragment"
-        android:label="fragment_paywall"
-        tools:layout="@layout/fragment_paywall" >
-        <action
-            android:id="@+id/action_paywallFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.plantapphubx.ui.home.HomeFragment"

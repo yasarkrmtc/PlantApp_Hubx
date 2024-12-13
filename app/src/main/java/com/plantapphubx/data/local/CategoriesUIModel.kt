@@ -6,7 +6,6 @@ data class CategoriesUIModel(
     val meta: MetaUIModel
 )
 
-
 data class CategoryDataUIModel(
     val id: Int,
     val name: String,

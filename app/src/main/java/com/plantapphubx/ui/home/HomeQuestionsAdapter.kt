@@ -2,14 +2,12 @@ package com.plantapphubx.ui.home
 
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.plantapphubx.R
 import com.plantapphubx.data.local.QuestionsUIModel
-import com.plantapphubx.data.remote.Questions
 import com.plantapphubx.databinding.QuestionsItemBinding
 import com.plantapphubx.utils.clickWithDebounce
 

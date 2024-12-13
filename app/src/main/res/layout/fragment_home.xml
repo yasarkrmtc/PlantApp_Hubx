@@ -67,6 +67,7 @@
             app:layout_constraintTop_toBottomOf="@+id/premiumImage">
 
             <LinearLayout
+                android:id="@+id/ll_premium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -132,7 +133,6 @@
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/size8"
         android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/size16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/paywall_background_color"
-    tools:context=".ui.paywall.PaywallFragment">
+    tools:context=".ui.paywall.PaywallActivity">
+
 
     <ImageView
         android:id="@+id/premiumImage"
@@ -17,15 +18,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/closeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size14"
-        android:layout_marginEnd="@dimen/size10"
-        android:src="@drawable/paywall_button_close"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/titleText"
@@ -44,7 +36,7 @@
         android:id="@+id/subTitleText"
         android:layout_width="@dimen/size0"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/size14"
+        android:layout_marginBottom="@dimen/size12"
         android:fontFamily="@font/roboto"
         android:text="@string/access_all_features"
         android:textColor="@color/lightWhite"
@@ -53,33 +45,46 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/titleText" />
+    >
+
+    <ImageView
+        android:id="@+id/closeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size14"
+        android:layout_marginEnd="@dimen/size10"
+        android:src="@drawable/paywall_button_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageView
         android:id="@+id/unlimited_image"
-        android:layout_width="@dimen/size0"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/size8"
+        android:layout_marginHorizontal="@dimen/size8"
         android:scaleType="fitXY"
+        android:layout_marginBottom="@dimen/size12"
         android:src="@drawable/paywall_images_features"
-        app:layout_constraintBottom_toBottomOf="@+id/premiumImage"
+        app:layout_constraintBottom_toTopOf="@+id/monthlyCardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/subTitleText" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/monthlyCardView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/size32"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size8"
+        android:layout_marginTop="@dimen/size32"
         android:layout_marginEnd="@dimen/size8"
         app:cardBackgroundColor="#12FFFFFF"
         app:cardCornerRadius="@dimen/size8"
-        app:strokeColor="@color/white"
+        android:layout_marginBottom="@dimen/size8"
         app:cardElevation="@dimen/size0"
+        app:layout_constraintBottom_toTopOf="@id/yearlyCardView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/unlimited_image"
+        app:strokeColor="@color/white"
         app:strokeWidth="1.5dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -129,16 +134,15 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/yearlyCardView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size8"
+        android:layout_marginTop="@dimen/size8"
+        android:layout_marginEnd="@dimen/size8"
         app:cardBackgroundColor="#12FFFFFF"
         app:cardCornerRadius="@dimen/size8"
         app:cardElevation="@dimen/size0"
-        android:layout_marginEnd="@dimen/size8"
-        android:layout_marginTop="@dimen/size8"
-        android:layout_marginStart="@dimen/size8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/monthlyCardView"
+        android:layout_marginBottom="@dimen/size12"
+        app:layout_constraintBottom_toTopOf="@id/tryButton"
         app:strokeColor="@color/selected_border"
         app:strokeWidth="1.5dp">
 
@@ -202,11 +206,11 @@
         app:cardBackgroundColor="@color/onboarding_button"
         app:cardCornerRadius="@dimen/size6"
         app:cardElevation="@dimen/size1"
-        app:strokeColor="@color/onboarding_button"
         app:layout_constraintBottom_toTopOf="@+id/afterTheText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/onboarding_button">
 
         <TextView
             android:layout_width="match_parent"

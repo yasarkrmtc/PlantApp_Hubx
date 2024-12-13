@@ -6,7 +6,6 @@ import androidx.navigation.fragment.findNavController
 import com.plantapphubx.R
 import com.plantapphubx.base.BaseFragment
 import com.plantapphubx.databinding.FragmentGetStartedBinding
-import com.plantapphubx.ui.MainActivity
 import com.plantapphubx.utils.clickWithDebounce
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,11 +23,11 @@ class GetStartedFragment :
 
     override fun onResume() {
         super.onResume()
-        (activity as? MainActivity)?.changeFullScreenFlags(true)
+        (activity as? OnboardingActivity)?.changeFullScreenFlags(true)
     }
 
     override fun onPause() {
         super.onPause()
-        (activity as? MainActivity)?.changeFullScreenFlags(false)
+        (activity as? OnboardingActivity)?.changeFullScreenFlags(false)
     }
 }

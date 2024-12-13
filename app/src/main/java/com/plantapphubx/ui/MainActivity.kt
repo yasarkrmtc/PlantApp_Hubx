@@ -39,22 +39,18 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.homeFragment -> {
-                    // Navigate to HomeFragment
                     navController.navigate(R.id.homeFragment)
                     true
                 }
                 R.id.diagnoseFragment -> {
-                    // Navigate to DiagnoseFragment
                     navController.navigate(R.id.diagnoseFragment)
                     true
                 }
                 R.id.myGardenFragment -> {
-                    // Navigate to MyGardenFragment
                     navController.navigate(R.id.myGardenFragment)
                     true
                 }
                 R.id.profileFragment -> {
-                    // Navigate to ProfileFragment
                     navController.navigate(R.id.profileFragment)
                     true
                 }

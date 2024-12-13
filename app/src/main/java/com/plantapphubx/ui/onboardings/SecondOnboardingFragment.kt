@@ -1,12 +1,12 @@
 package com.plantapphubx.ui.onboardings
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.navigation.fragment.findNavController
-import com.plantapphubx.R
 import com.plantapphubx.base.BaseFragment
 import com.plantapphubx.databinding.FragmentSecondOnboardingBinding
-import com.plantapphubx.ui.MainActivity
+import com.plantapphubx.ui.paywall.PaywallActivity
 import com.plantapphubx.utils.clickWithDebounce
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,18 +17,25 @@ class SecondOnboardingFragment :
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             continueButton.clickWithDebounce {
-                findNavController().navigate(R.id.action_secondOnboardingFragment_to_paywallFragment)
+                val sharedPreferences = requireContext().getSharedPreferences("s", Context.MODE_PRIVATE)
+                sharedPreferences.edit().apply {
+                    putBoolean("seen", true)
+                    apply()
+                }
+                val intent = Intent(requireContext(),PaywallActivity::class.java)
+                startActivity(intent)
+                (activity as? OnboardingActivity)?.finish()
             }
 
         }
     }
     override fun onResume() {
         super.onResume()
-        (activity as? MainActivity)?.changeFullScreenFlags(true)
+        (activity as? OnboardingActivity)?.changeFullScreenFlags(true)
     }
 
     override fun onPause() {
         super.onPause()
-        (activity as? MainActivity)?.changeFullScreenFlags(false)
+        (activity as? OnboardingActivity)?.changeFullScreenFlags(false)
     }
 }

@@ -1,14 +1,19 @@
-package com.plantapphubx.data.local
+package com.plantapphubx.data.mapper
 
+import com.plantapphubx.data.local.CategoryDataUIModel
+import com.plantapphubx.data.local.ImageUIModel
+import com.plantapphubx.data.local.MetaUIModel
+import com.plantapphubx.data.local.PaginationUIModel
 import com.plantapphubx.data.remote.Categories
 import com.plantapphubx.data.remote.CategoryData
 import com.plantapphubx.data.remote.Image
 import com.plantapphubx.data.remote.Meta
 import com.plantapphubx.data.remote.Pagination
+
 class CategoriesMapper {
 
     fun mapToUIModel(categories: Categories): List<CategoryDataUIModel> {
-        return categories.data.map { it.toUIModel() }  // Mapping CategoryData to CategoryDataUIModel
+        return categories.data.map { it.toUIModel() }
     }
 
     fun CategoryData.toUIModel(): CategoryDataUIModel {
@@ -61,4 +66,3 @@ class CategoriesMapper {
         )
     }
 }
-
