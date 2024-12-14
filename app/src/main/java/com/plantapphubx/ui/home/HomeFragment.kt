@@ -2,8 +2,12 @@ package com.plantapphubx.ui.home
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Shader
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -11,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.plantapphubx.R
 import com.plantapphubx.base.BaseFragment
 import com.plantapphubx.data.local.CategoryDataUIModel
 import com.plantapphubx.data.local.QuestionsUIModel
@@ -32,6 +37,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        applyTextGradient()
         setupUI()
         observeViewModel()
 
@@ -141,6 +147,37 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun handleCategoryClick(category: CategoryDataUIModel) {
+    }
+    
+    private fun applyTextGradient() {
+        val premiumTitle = binding.premiumTitle
+        val premiumSubtitle = binding.premiumSubtitle
+
+        premiumTitle.let {
+            val shader = LinearGradient(
+                0f, 0f, 0f, it.textSize,
+                intArrayOf(
+                    Color.parseColor("#FFD700"),
+                    Color.parseColor("#E4B046")
+                ),
+                null,
+                Shader.TileMode.CLAMP
+            )
+            it.paint.shader = shader
+        }
+
+        premiumSubtitle.let {
+            val shader = LinearGradient(
+                0f, 0f, 0f, it.textSize,
+                intArrayOf(
+                    Color.parseColor("#FFDE9C"),
+                    Color.parseColor("#F5C25B")
+                ),
+                null,
+                Shader.TileMode.CLAMP
+            )
+            it.paint.shader = shader
+        }
     }
 
     override fun onResume() {

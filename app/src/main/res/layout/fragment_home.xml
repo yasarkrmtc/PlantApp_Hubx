@@ -88,22 +88,20 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/title"
+                        android:id="@+id/premiumTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
                         android:text="@string/free_premium_available"
-                        android:textColor="#FFD700"
                         android:textSize="@dimen/font_size_16"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/subtitle"
+                        android:id="@+id/premiumSubtitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
                         android:text="@string/tap_to_upgrade_your_account"
-                        android:textColor="#B2FFFFFF"
                         android:textSize="@dimen/font_size_13" />
                 </LinearLayout>
 
