@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.plantapphubx.data.local.CategoryDataUIModel
 import com.plantapphubx.databinding.CategoriesItemBinding
+import com.plantapphubx.utils.clickWithDebounce
 
 class HomeCategoriesAdapter(
     private var categories: List<CategoryDataUIModel>,
@@ -14,13 +15,25 @@ class HomeCategoriesAdapter(
 
     inner class CategoryViewHolder(private val binding: CategoriesItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(category: CategoryDataUIModel) {
-            binding.categoriesText.text = category.title
-            Glide.with(binding.categoriesImageView.context)
-                .load(category.image.url)
-                .into(binding.categoriesImageView)
 
-            binding.root.setOnClickListener {
+        fun bind(category: CategoryDataUIModel) {
+            bindCategoryText(category.title)
+            bindCategoryImage(category.image.url)
+            setupItemClickListener(category)
+        }
+
+        private fun bindCategoryText(title: String) {
+            binding.categoriesText.text = title
+        }
+
+        private fun bindCategoryImage(imageUrl: String) {
+            Glide.with(binding.categoriesImageView.context)
+                .load(imageUrl)
+                .into(binding.categoriesImageView)
+        }
+
+        private fun setupItemClickListener(category: CategoryDataUIModel) {
+            binding.root.clickWithDebounce {
                 onItemClick(category)
             }
         }

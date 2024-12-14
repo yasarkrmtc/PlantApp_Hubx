@@ -10,15 +10,44 @@ import androidx.core.content.ContextCompat
 import com.plantapphubx.R
 import com.plantapphubx.databinding.ActivityPaywallBinding
 import com.plantapphubx.ui.MainActivity
+import com.plantapphubx.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PaywallActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPaywallBinding
     private var selectedPlan: String? = null
-    private val monthlyPlan = "MONTHLY"
-    private val yearlyPlan = "YEARLY"
+    private val monthlyPlan = Constants.MONTHLY_PLAN
+    private val yearlyPlan = Constants.YEARLY_PLAN
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityPaywallBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        initUI()
+    }
+
+    private fun initUI() {
+        binding.apply {
+            selectPlan(yearlyPlan)
+
+            closeButton.setOnClickListener {
+                navigateToMainActivity()
+            }
+
+            monthlyCardView.setOnClickListener {
+                selectPlan(monthlyPlan)
+            }
+
+            yearlyCardView.setOnClickListener {
+                selectPlan(yearlyPlan)
+            }
+
+            tryButton.setOnClickListener {
+                handlePlanSelection()
+            }
+        }
+    }
 
     private fun resetSelection() {
         binding.apply {
@@ -49,73 +78,45 @@ class PaywallActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityPaywallBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        initUI()
-    }
-
-    private fun initUI(){
-        binding.apply {
-            selectPlan(yearlyPlan)
-
-            closeButton.setOnClickListener {
-                val intent = Intent(this@PaywallActivity,MainActivity::class.java)
-                startActivity(intent)
-                finish()
+    private fun handlePlanSelection() {
+        when (selectedPlan) {
+            monthlyPlan -> {
+                savePremiumStatus(isPremium = true, plan = monthlyPlan)
+                Toast.makeText(this@PaywallActivity, Constants.TOAST_MONTHLY_PURCHASE, Toast.LENGTH_SHORT).show()
+                navigateToMainActivity()
             }
-
-            monthlyCardView.setOnClickListener {
-                selectPlan(monthlyPlan)
+            yearlyPlan -> {
+                savePremiumStatus(isPremium = true, plan = yearlyPlan)
+                Toast.makeText(this@PaywallActivity, Constants.TOAST_YEARLY_PURCHASE, Toast.LENGTH_SHORT).show()
+                navigateToMainActivity()
             }
-
-            yearlyCardView.setOnClickListener {
-                selectPlan(yearlyPlan)
-            }
-
-            tryButton.setOnClickListener {
-                when (selectedPlan) {
-                    monthlyPlan -> {
-                        savePremiumStatus(isPremium = true, plan = monthlyPlan)
-                        Toast.makeText(this@PaywallActivity, "Aylık premium paketi aldınız", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@PaywallActivity,MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    }
-                    yearlyPlan -> {
-                        savePremiumStatus(isPremium = true, plan = yearlyPlan)
-                        Toast.makeText(this@PaywallActivity, "Yıllık abonelik aldınız. İlk 3 gün ücretsiz!", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@PaywallActivity,MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    }
-                    else -> {
-                        Toast.makeText(this@PaywallActivity, "Lütfen bir plan seçin!", Toast.LENGTH_SHORT).show()
-                    }
-                }
+            else -> {
+                Toast.makeText(this@PaywallActivity, Constants.TOAST_PLEASE_SELECT_PLAN, Toast.LENGTH_SHORT).show()
             }
         }
     }
-    fun changeFullScreenFlags(isFullScreen: Boolean) {
+
+    private fun savePremiumStatus(isPremium: Boolean, plan: String) {
+        val sharedPreferences = getSharedPreferences(Constants.PAYWALL_PREFS, Context.MODE_PRIVATE)
+        sharedPreferences.edit().apply {
+            putBoolean(Constants.IS_PREMIUM, isPremium)
+            putString(Constants.SELECTED_PLAN, plan)
+            commit()
+        }
+    }
+
+    private fun navigateToMainActivity() {
+        val intent = Intent(this@PaywallActivity, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun changeFullScreenFlags(isFullScreen: Boolean) {
         if (isFullScreen) {
             window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         } else {
             window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         }
-    }
-    private fun savePremiumStatus(isPremium: Boolean, plan: String) {
-        val sharedPreferences = getSharedPreferences("PaywallPrefs", Context.MODE_PRIVATE)
-        sharedPreferences.edit().apply {
-            putBoolean("isPremium", isPremium)
-            putString("selectedPlan", plan)
-            apply()
-        }
-    }
-
-    private fun isPremiumUser(): Boolean {
-        val sharedPreferences = getSharedPreferences("PaywallPrefs", Context.MODE_PRIVATE)
-        return sharedPreferences.getBoolean("isPremium", false)
     }
 
     override fun onResume() {

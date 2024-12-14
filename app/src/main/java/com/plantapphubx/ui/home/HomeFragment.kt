@@ -9,11 +9,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.plantapphubx.base.BaseFragment
+import com.plantapphubx.data.local.CategoryDataUIModel
+import com.plantapphubx.data.local.QuestionsUIModel
 import com.plantapphubx.databinding.FragmentHomeBinding
 import com.plantapphubx.ui.MainActivity
-import com.plantapphubx.ui.onboardings.OnboardingActivity
 import com.plantapphubx.ui.paywall.PaywallActivity
+import com.plantapphubx.utils.Constants
 import com.plantapphubx.utils.CustomAdaptiveDecoration
 import com.plantapphubx.utils.clickWithDebounce
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,30 +32,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        checkPremiumStatus()
+        setupUI()
+        observeViewModel()
+
+        questionsAdapter = HomeQuestionsAdapter(emptyList()) { question -> handleQuestionClick(question) }
+        categoriesAdapter = HomeCategoriesAdapter(emptyList()) { category -> handleCategoryClick(category) }
+
+        setupRecyclerViews()
+
         viewModel.fetchQuestions()
         viewModel.fetchCategories()
+    }
 
-        binding.llPremium.clickWithDebounce {
-            val intent = Intent(requireContext(), PaywallActivity::class.java)
-            startActivity(intent)
-            (activity as? PaywallActivity)?.finish()
+    private fun setupUI() {
+        checkPremiumStatus()
 
-        }
+        binding.llPremium.clickWithDebounce { navigateToPaywall() }
 
         binding.homeSearchbar.addTextChangedListener { editable ->
-            val query = editable.toString()
-            filterCategories(query)
+            filterCategories(editable.toString())
         }
+    }
 
-        questionsAdapter = HomeQuestionsAdapter(emptyList()) { question ->
-        }
-        categoriesAdapter = HomeCategoriesAdapter(emptyList()) { category ->
-        }
-
-        setupQuestionsRecyclerView()
-        setupCategoriesRecyclerView()
-
+    private fun observeViewModel() {
         lifecycleScope.launchWhenStarted {
             launch {
                 viewModel.questions.collect { questions ->
@@ -63,47 +66,81 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                     categoriesAdapter.updateData(categories)
                 }
             }
+            launch {
+                viewModel.loadingState.collect { isLoading ->
+                    toggleProgressBar(isLoading)
+                }
+            }
+            launch {
+                viewModel.errorState.collect { errorMessage ->
+                    showError(errorMessage)
+                }
+            }
+        }
+    }
+
+    private fun toggleProgressBar(isLoading: Boolean) {
+        binding.itemProgress.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showError(errorMessage: String?) {
+        if (!errorMessage.isNullOrEmpty()) {
+            Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_LONG).show()
+            viewModel.clearErrorState()
         }
     }
 
 
-    private fun setupQuestionsRecyclerView() {
-        binding.questionRecyclerview.layoutManager = LinearLayoutManager(
-            requireContext(),
-            LinearLayoutManager.HORIZONTAL,
-            false
+    private fun setupRecyclerViews() {
+        setupRecyclerView(
+            binding.questionRecyclerview,
+            questionsAdapter,
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
+            CustomAdaptiveDecoration(requireContext(), spanCount = 1, spacingHorizontal = 12, spacingVertical = 0)
         )
-        binding.questionRecyclerview.adapter = questionsAdapter
-
-        val spacing = 12
-        val itemDecoration = CustomAdaptiveDecoration(
-            context = requireContext(),
-            spanCount = 1,
-            spacingHorizontal = spacing,
-            spacingVertical = 0,
-            includeEdge = true
+        setupRecyclerView(
+            binding.categoriesRecyclerView,
+            categoriesAdapter,
+            GridLayoutManager(requireContext(), 2),
+            CustomAdaptiveDecoration(requireContext(), spanCount = 2, spacingHorizontal = 24, spacingVertical = 24)
         )
-        binding.questionRecyclerview.addItemDecoration(itemDecoration)
     }
 
-    private fun setupCategoriesRecyclerView() {
-        binding.categoriesRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
-        binding.categoriesRecyclerView.adapter = categoriesAdapter
-
-        val spacing = 28
-        val itemDecoration = CustomAdaptiveDecoration(
-            context = requireContext(),
-            spanCount = 2,
-            spacingHorizontal = spacing,
-            spacingVertical = spacing,
-            includeEdge = true
-        )
-        binding.categoriesRecyclerView.addItemDecoration(itemDecoration)
+    private fun setupRecyclerView(
+        recyclerView: RecyclerView,
+        adapter: RecyclerView.Adapter<*>,
+        layoutManager: RecyclerView.LayoutManager,
+        itemDecoration: RecyclerView.ItemDecoration
+    ) {
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = adapter
+        recyclerView.addItemDecoration(itemDecoration)
     }
 
     private fun filterCategories(query: String) {
         val filteredCategories = viewModel.filterCategories(query)
         categoriesAdapter.updateData(filteredCategories)
+    }
+
+    private fun checkPremiumStatus() {
+        val isPremium = requireContext().getSharedPreferences(Constants.PAYWALL_PREFS, Context.MODE_PRIVATE)
+            .getBoolean(Constants.IS_PREMIUM, false)
+
+        if (isPremium) {
+            binding.llPremium.visibility = View.GONE
+        }
+    }
+
+    private fun navigateToPaywall() {
+        val intent = Intent(requireContext(), PaywallActivity::class.java)
+        startActivity(intent)
+        (activity as? PaywallActivity)?.finish()
+    }
+
+    private fun handleQuestionClick(question: QuestionsUIModel) {
+    }
+
+    private fun handleCategoryClick(category: CategoryDataUIModel) {
     }
 
     override fun onResume() {
@@ -114,14 +151,5 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun onPause() {
         super.onPause()
         (activity as? MainActivity)?.changeFullScreenFlags(false)
-    }
-
-    private fun checkPremiumStatus() {
-        val sharedPreferences = requireContext().getSharedPreferences("PaywallPrefs", Context.MODE_PRIVATE)
-        val isPremium = sharedPreferences.getBoolean("isPremium", false)
-
-        if (isPremium) {
-            binding.llPremium.visibility = View.GONE
-        }
     }
 }

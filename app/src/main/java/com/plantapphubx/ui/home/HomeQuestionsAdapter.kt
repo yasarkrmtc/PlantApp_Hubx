@@ -1,5 +1,6 @@
 package com.plantapphubx.ui.home
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
@@ -22,19 +23,26 @@ class HomeQuestionsAdapter(
         fun bind(question: QuestionsUIModel) {
             binding.apply {
                 questionText.text = question.title
-
-                Glide.with(imageView.context)
-                    .load(question.imageUri)
-                    .placeholder(R.drawable.ic_launcher_background)
-                    .error(com.google.android.material.R.drawable.mtrl_ic_error)
-                    .into(imageView)
+                loadImage(imageView.context, question.imageUri)
 
                 root.clickWithDebounce {
-                    val context = root.context
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(question.uri))
-                    context.startActivity(intent)
+                    onItemClick(question)
+                    question.uri?.let { openQuestionUri(it) }
                 }
             }
+        }
+
+        private fun loadImage(context: Context, imageUri: String?) {
+            Glide.with(context)
+                .load(imageUri ?: R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_background)
+                .into(binding.imageView)
+        }
+
+        private fun openQuestionUri(uri: String) {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+            binding.root.context.startActivity(intent)
         }
     }
 

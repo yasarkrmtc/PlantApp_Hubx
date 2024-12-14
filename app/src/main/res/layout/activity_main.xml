@@ -27,7 +27,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/fragmentContainerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
     </View>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
