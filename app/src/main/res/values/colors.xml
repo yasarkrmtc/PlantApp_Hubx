@@ -7,16 +7,18 @@
     <color name="semi_transparent_gray_green">#B3597165</color>
     <color name="onboarding_button">#28AF6E</color>
     <color name="paywall_background_color">#0E1E16</color>
-
     <color name="selected_background">#28AF6E</color>
     <color name="selected_border">#28AF6E</color>
     <color name="selected_radio_color">#28AF6E</color>
-
     <color name="unselected_background">#05FFFFFF</color>
     <color name="unselected_border">#4DFFFFFF</color>
     <color name="unselected_radio_color">#4DFFFFFF</color>
-
     <color name="hi_plant_lover_color">#13231B</color>
+    <color name="bottom_nav_background">#F4F6F6</color>
+    <color name="paywall_item_background">#12FFFFFF</color>
+
+
+
 
 
 

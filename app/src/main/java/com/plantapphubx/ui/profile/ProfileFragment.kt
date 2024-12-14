@@ -13,13 +13,4 @@ class ProfileFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
-    override fun onResume() {
-        super.onResume()
-        (activity as? MainActivity)?.changeFullScreenFlags(true)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        (activity as? MainActivity)?.changeFullScreenFlags(false)
-    }
 }

@@ -65,7 +65,8 @@
             android:gravity="center"
             android:paddingVertical="@dimen/size9"
             android:text="@string/get_started"
-            android:textColor="@android:color/white"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/white"
             android:textSize="@dimen/font_size_16"
             android:textStyle="bold" />
 
@@ -75,8 +76,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size18"
         android:layout_marginBottom="@dimen/size8"
-        app:layout_constraintBottom_toBottomOf="parent"
-        >
+        app:layout_constraintBottom_toBottomOf="parent">
         <TextView
             android:id="@+id/byTappingText"
             android:layout_width="wrap_content"
@@ -89,7 +89,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

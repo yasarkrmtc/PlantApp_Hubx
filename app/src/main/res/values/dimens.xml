@@ -52,6 +52,10 @@
     <dimen name="size60">120dp</dimen>
     <dimen name="size130">260dp</dimen>
 
+    <dimen name="dp152">152dp</dimen>
+    <dimen name="dp465">465dp</dimen>
+
+
 
     <dimen name="font_size_9">9sp</dimen>
     <dimen name="font_size_10">10sp</dimen>
@@ -67,6 +71,8 @@
     <dimen name="font_size_26">26sp</dimen>
     <dimen name="font_size_28">28sp</dimen>
     <dimen name="font_size_30">30sp</dimen>
+
+
 
 
 

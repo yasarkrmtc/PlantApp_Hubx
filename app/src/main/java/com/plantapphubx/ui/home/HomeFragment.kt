@@ -4,10 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.LinearGradient
-import android.graphics.Rect
 import android.graphics.Shader
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
@@ -22,14 +20,12 @@ import com.plantapphubx.base.BaseFragment
 import com.plantapphubx.data.local.CategoryDataUIModel
 import com.plantapphubx.data.local.QuestionsUIModel
 import com.plantapphubx.databinding.FragmentHomeBinding
-import com.plantapphubx.ui.MainActivity
 import com.plantapphubx.ui.paywall.PaywallActivity
 import com.plantapphubx.utils.Constants
 import com.plantapphubx.utils.CustomAdaptiveDecoration
 import com.plantapphubx.utils.HorizontalSpaceItemDecoration
 import com.plantapphubx.utils.clickWithDebounce
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -186,15 +182,4 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             it.paint.shader = shader
         }
     }
-
-    override fun onResume() {
-        super.onResume()
-        (activity as? MainActivity)?.changeFullScreenFlags(true)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        (activity as? MainActivity)?.changeFullScreenFlags(false)
-    }
 }
-

@@ -1,7 +1,6 @@
 package com.plantapphubx.ui
 
 import android.os.Bundle
-import android.view.WindowManager
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -59,15 +58,5 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
-
-    }
-
-    fun changeFullScreenFlags(isFullScreen: Boolean) {
-      /*  if (isFullScreen) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-        } else {
-            window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-        }*/
     }
 }

@@ -7,25 +7,25 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:elevation="0dp"
+        android:elevation="@dimen/size0"
         app:cardCornerRadius="@dimen/size8"
-        app:cardElevation="0dp"
+        app:cardElevation="@dimen/size0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="#F4F6F6">
+        app:strokeColor="@color/bottom_nav_background">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="152dp"
+            android:layout_height="@dimen/dp152"
             android:background="@color/white"
             android:clipToPadding="false">
 
             <ImageView
                 android:id="@+id/categoriesImageView"
                 android:layout_width="match_parent"
-                android:layout_height="152dp"
+                android:layout_height="@dimen/dp152"
                 android:clipToOutline="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_launcher_background"
@@ -35,18 +35,18 @@
 
             <TextView
                 android:id="@+id/categoriesText"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/size0"
                 android:layout_height="wrap_content"
                 android:maxLines="3"
                 android:layout_marginStart="@dimen/size6"
-                android:layout_marginTop="@dimen/size6"
+                android:layout_marginTop="@dimen/size10"
                 android:fontFamily="@font/roboto"
                 android:text="@string/edible_plants"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_16"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.5" />
+                app:layout_constraintWidth_percent="0.6" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

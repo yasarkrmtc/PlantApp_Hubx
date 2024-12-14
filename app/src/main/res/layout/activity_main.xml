@@ -22,7 +22,7 @@
     <View
         android:layout_width="wrap_content"
         android:layout_height="@dimen/oneDp"
-        android:background="#F4F6F6"
+        android:background="@color/bottom_nav_background"
         app:layout_constraintBottom_toBottomOf="@+id/fragmentContainerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
