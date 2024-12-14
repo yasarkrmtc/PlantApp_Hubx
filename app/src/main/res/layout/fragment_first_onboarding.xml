@@ -36,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size0"
         android:src="@drawable/first_onboarding_image"
-        app:layout_constraintBottom_toTopOf="@+id/continueButton"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

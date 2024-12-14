@@ -32,6 +32,7 @@
         android:id="@+id/pageImage"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size0"
+        android:layout_marginBottom="@dimen/size4"
         android:src="@drawable/second_onboarding_image"
         app:layout_constraintBottom_toBottomOf="@+id/continueButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,21 +74,30 @@
         android:layout_height="@dimen/size18"
         android:layout_marginBottom="@dimen/size8"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        >
+        app:layout_constraintStart_toStartOf="parent">
+
         <ImageView
             android:id="@+id/slider2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/slider2"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/blur"
+        app:layout_constraintBottom_toTopOf="@+id/continueButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

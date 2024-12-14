@@ -113,10 +113,13 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_size_16"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/textView2"
                 app:layout_constraintStart_toEndOf="@+id/unselect_radio"
-                app:layout_constraintTop_toTopOf="@+id/unselect_radio" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
@@ -124,6 +127,7 @@
                 android:textColor="@color/lightWhite"
                 android:textSize="@dimen/font_size_12"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/monthly_text"
                 app:layout_constraintTop_toBottomOf="@+id/monthly_text" />
 
@@ -172,10 +176,13 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_size_16"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/textView3"
                 app:layout_constraintStart_toEndOf="@+id/select_radio"
-                app:layout_constraintTop_toTopOf="@+id/select_radio" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
+                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
@@ -183,6 +190,7 @@
                 android:textColor="@color/lightWhite"
                 android:textSize="@dimen/font_size_12"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/monthText"
                 app:layout_constraintTop_toBottomOf="@+id/monthText" />
 

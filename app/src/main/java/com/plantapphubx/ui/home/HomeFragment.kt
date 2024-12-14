@@ -4,18 +4,20 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.LinearGradient
+import android.graphics.Rect
 import android.graphics.Shader
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.View
-import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import com.plantapphubx.R
 import com.plantapphubx.base.BaseFragment
 import com.plantapphubx.data.local.CategoryDataUIModel
 import com.plantapphubx.data.local.QuestionsUIModel
@@ -24,8 +26,10 @@ import com.plantapphubx.ui.MainActivity
 import com.plantapphubx.ui.paywall.PaywallActivity
 import com.plantapphubx.utils.Constants
 import com.plantapphubx.utils.CustomAdaptiveDecoration
+import com.plantapphubx.utils.HorizontalSpaceItemDecoration
 import com.plantapphubx.utils.clickWithDebounce
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -61,27 +65,30 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun observeViewModel() {
-        lifecycleScope.launchWhenStarted {
-            launch {
-                viewModel.questions.collect { questions ->
-                    questionsAdapter.updateData(questions)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                launch {
+                    viewModel.questions.collect { questions ->
+                        questionsAdapter.updateData(questions)
+                    }
+                }
+                launch {
+                    viewModel.categories.collect { category ->
+                        categoriesAdapter.updateData(category)
+                    }
+                }
+                launch {
+                    viewModel.loadingState.collect { isLoading ->
+                        toggleProgressBar(isLoading)
+                    }
+                }
+                launch {
+                    viewModel.errorState.collect { errorMessage ->
+                        showError(errorMessage)
+                    }
                 }
             }
-            launch {
-                viewModel.categories.collect { categories ->
-                    categoriesAdapter.updateData(categories)
-                }
-            }
-            launch {
-                viewModel.loadingState.collect { isLoading ->
-                    toggleProgressBar(isLoading)
-                }
-            }
-            launch {
-                viewModel.errorState.collect { errorMessage ->
-                    showError(errorMessage)
-                }
-            }
+
         }
     }
 
@@ -102,13 +109,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             binding.questionRecyclerview,
             questionsAdapter,
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
-            CustomAdaptiveDecoration(requireContext(), spanCount = 1, spacingHorizontal = 12, spacingVertical = 0)
+            HorizontalSpaceItemDecoration(requireContext(),12)
         )
         setupRecyclerView(
             binding.categoriesRecyclerView,
             categoriesAdapter,
             GridLayoutManager(requireContext(), 2),
-            CustomAdaptiveDecoration(requireContext(), spanCount = 2, spacingHorizontal = 24, spacingVertical = 24)
+            CustomAdaptiveDecoration(requireContext(), spanCount = 2, spacingHorizontal = 16, spacingVertical = 16)
         )
     }
 
@@ -148,7 +155,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private fun handleCategoryClick(category: CategoryDataUIModel) {
     }
-    
+
     private fun applyTextGradient() {
         val premiumTitle = binding.premiumTitle
         val premiumSubtitle = binding.premiumSubtitle
@@ -190,3 +197,4 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         (activity as? MainActivity)?.changeFullScreenFlags(false)
     }
 }
+

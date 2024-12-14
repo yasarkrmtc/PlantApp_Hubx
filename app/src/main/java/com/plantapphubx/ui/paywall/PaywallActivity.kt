@@ -2,9 +2,12 @@ package com.plantapphubx.ui.paywall
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.SystemBarStyle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.plantapphubx.R
@@ -22,6 +25,7 @@ class PaywallActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge(statusBarStyle = SystemBarStyle.dark(Color.TRANSPARENT))
         binding = ActivityPaywallBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initUI()
@@ -109,23 +113,5 @@ class PaywallActivity : AppCompatActivity() {
         val intent = Intent(this@PaywallActivity, MainActivity::class.java)
         startActivity(intent)
         finish()
-    }
-
-    private fun changeFullScreenFlags(isFullScreen: Boolean) {
-        if (isFullScreen) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-        } else {
-            window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        changeFullScreenFlags(true)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        changeFullScreenFlags(false)
     }
 }

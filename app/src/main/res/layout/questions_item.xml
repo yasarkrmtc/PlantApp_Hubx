@@ -29,7 +29,8 @@
             <TextView
                 android:id="@+id/questionText"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.25"
                 android:layout_margin="@dimen/size8"
                 android:fontFamily="@font/roboto"
                 android:text="@string/how_to_identify_plants_easily_with_plantapp"

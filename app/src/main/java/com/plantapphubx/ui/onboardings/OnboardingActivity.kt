@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.WindowManager
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.plantapphubx.databinding.ActivityOnboardingBinding
 import com.plantapphubx.ui.MainActivity
@@ -18,6 +19,7 @@ class OnboardingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -52,11 +54,5 @@ class OnboardingActivity : AppCompatActivity() {
 
     private fun startOnboardingFlow() {}
 
-    fun changeFullScreenFlags(isFullScreen: Boolean) {
-        if (isFullScreen) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-        } else {
-            window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-        }
-    }
+
 }

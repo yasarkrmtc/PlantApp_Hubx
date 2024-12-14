@@ -18,6 +18,7 @@
         tools:targetApi="31">
         <activity
             android:name=".ui.onboardings.OnboardingActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,11 +28,13 @@
         </activity>
         <activity
             android:name=".ui.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
 
         </activity>
         <activity
             android:name=".ui.paywall.PaywallActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
 
         </activity>

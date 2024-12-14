@@ -10,6 +10,7 @@ import com.plantapphubx.utils.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
@@ -22,16 +23,16 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _questions = MutableStateFlow<List<QuestionsUIModel>>(emptyList())
-    val questions: StateFlow<List<QuestionsUIModel>> get() = _questions
+    var questions = _questions.asStateFlow()
 
     private val _categories = MutableStateFlow<List<CategoryDataUIModel>>(emptyList())
-    val categories: StateFlow<List<CategoryDataUIModel>> get() = _categories
+    val categories = _categories.asStateFlow()
 
     private val _loadingState = MutableStateFlow(false)
-    val loadingState: StateFlow<Boolean> get() = _loadingState
+    val loadingState = _loadingState.asStateFlow()
 
     private val _errorState = MutableStateFlow<String?>(null)
-    val errorState: StateFlow<String?> get() = _errorState
+    val errorState  = _errorState.asStateFlow()
 
     fun clearErrorState() {
         _errorState.value = null

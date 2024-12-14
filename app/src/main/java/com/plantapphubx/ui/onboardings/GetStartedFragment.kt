@@ -20,14 +20,4 @@ class GetStartedFragment :
             }
         }
     }
-
-    override fun onResume() {
-        super.onResume()
-        (activity as? OnboardingActivity)?.changeFullScreenFlags(true)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        (activity as? OnboardingActivity)?.changeFullScreenFlags(false)
-    }
 }
